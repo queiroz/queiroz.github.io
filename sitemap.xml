@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://queiroz.org/series/</loc>
+    <lastmod>2020-02-03T21:01:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://queiroz.org/</loc>
+    <lastmod>2020-02-03T21:01:12+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://queiroz.org/tags/dart/</loc>
     <lastmod>2019-11-14T21:01:12+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://queiroz.org/tags/flutter/</loc>
-    <lastmod>2019-11-14T21:01:12+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://queiroz.org/</loc>
     <lastmod>2019-11-14T21:01:12+00:00</lastmod>
   </url>
   
