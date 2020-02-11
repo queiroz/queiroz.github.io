@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dart on Learning New Technologies. Sharing knowledge.</title>
-    <link>http://queiroz.org/tags/dart/</link>
+    <link>https://queiroz.github.io/tags/dart/</link>
     <description>Recent content in Dart on Learning New Technologies. Sharing knowledge.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Thu, 14 Nov 2019 21:01:12 +0000</lastBuildDate>
     
-	<atom:link href="http://queiroz.org/tags/dart/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://queiroz.github.io/tags/dart/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Why Flutter or Dart?</title>
-      <link>http://queiroz.org/why-flutter-or-dart/</link>
+      <link>https://queiroz.github.io/why-flutter-or-dart/</link>
       <pubDate>Thu, 14 Nov 2019 21:01:12 +0000</pubDate>
       
-      <guid>http://queiroz.org/why-flutter-or-dart/</guid>
+      <guid>https://queiroz.github.io/why-flutter-or-dart/</guid>
       <description>Flutter is the new kid around the block, and it came with a lot of new concepts and features.
 Before we dive into learning more about Flutter and why is claimed to be the best cross-platform solution, we need to take a step back and look at existing available solutions.
 Cross-platform frameworks allow developers to write one single codebase and run the same code on multiple platforms.

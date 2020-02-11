@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Learning New Technologies. Sharing knowledge.</title>
-    <link>http://queiroz.org/tags/python/</link>
+    <link>https://queiroz.github.io/tags/python/</link>
     <description>Recent content in Python on Learning New Technologies. Sharing knowledge.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Sun, 25 Sep 2016 01:06:49 +0000</lastBuildDate>
     
-	<atom:link href="http://queiroz.org/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://queiroz.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Django Settings Deployment</title>
-      <link>http://queiroz.org/django-settings-deployment/</link>
+      <link>https://queiroz.github.io/django-settings-deployment/</link>
       <pubDate>Sun, 25 Sep 2016 01:06:49 +0000</pubDate>
       
-      <guid>http://queiroz.org/django-settings-deployment/</guid>
+      <guid>https://queiroz.github.io/django-settings-deployment/</guid>
       <description>After a long research I have finally found a good solution to deploy Django settings into several stages, which is production, development and common shared settings.
 I have also found a good way to deploy Django overall, which I&#39;ll be writing soon.
 Just to clarify, there is not standard way of deploying Django, however I think the method I put together is a very good way for deployment.
@@ -25,10 +25,10 @@ Where should the settings be stored?</description>
     
     <item>
       <title>Installing Python From Source</title>
-      <link>http://queiroz.org/installing-python-from-source/</link>
+      <link>https://queiroz.github.io/installing-python-from-source/</link>
       <pubDate>Wed, 21 Sep 2016 01:00:30 +0000</pubDate>
       
-      <guid>http://queiroz.org/installing-python-from-source/</guid>
+      <guid>https://queiroz.github.io/installing-python-from-source/</guid>
       <description>Getting the Python release First we need to go to Python&#39;s source download link at https://www.python.org/downloads/source/{: target=&amp;rdquo;_blank&amp;rdquo; } and choose our Python version, for this tutorial I have chosen Python 3.5.2 as it&#39;s the latest stable release as of this writing.
 wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz or directory specific:
 wget -P /tmp https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz The above command will download python 3.5.2 Gzipped source tarball to the current directory I&#39;m currently in /root, you can specify -P as specified above to save on that directory.</description>
