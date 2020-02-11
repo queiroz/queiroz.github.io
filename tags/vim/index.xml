@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on Learning New Technologies. Sharing knowledge.</title>
-    <link>https://queiroz.github.io/tags/vim/</link>
+    <link>https://queiroz.org/tags/vim/</link>
     <description>Recent content in Vim on Learning New Technologies. Sharing knowledge.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Thu, 21 Nov 2013 00:53:36 +0000</lastBuildDate>
     
-	<atom:link href="https://queiroz.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://queiroz.org/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Vim Basic Movements</title>
-      <link>https://queiroz.github.io/vim-basic-movements/</link>
+      <link>https://queiroz.org/vim-basic-movements/</link>
       <pubDate>Thu, 21 Nov 2013 00:53:36 +0000</pubDate>
       
-      <guid>https://queiroz.github.io/vim-basic-movements/</guid>
+      <guid>https://queiroz.org/vim-basic-movements/</guid>
       <description>Vim is an open source text editor mainly used by Unix based operating systems, however Vim is cross-platform, meaning it can be used on Unix, Linux, Mac OS X, Windows, iOS, Android.
 Vim was design to be used on command line interface and as a standalone application in a graphical user interface.
 Vim can be very annoying at the beginning because of its commands and configuration, but once you learn how powerful this text editor is, you will definitely see how fast your production can be.</description>
