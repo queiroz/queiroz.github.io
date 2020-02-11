@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Learn how to deploy Django settings into environment independent such as dev and production">
+<title>Django Settings Deployment</title>
+
+
+<link rel="stylesheet" href="http://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="http://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="http://queiroz.org/django-settings-deployment/">
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="http://queiroz.org/css/light.syntax.highlight.css">
+
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="http://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main>
+
+<header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Django Settings Deployment</h1>
+        <h2>Learn how to deploy Django settings into environment independent such as dev and production<span class="cursor">|</span></h2>
+        
+        <div class="info">
+            <p>
+                <span>
+                    
+                    
+                    
+                    <time pubdate="pubdate">Sep 01, 2016 ·</time>
+                    
+                </span>
+                <span>
+                   5 min read
+                </span>
+            </p>
+        </div>
+        
+    </div>
+</header>
+
+
+<article class="page container">
+    <div class="row">
+        
+        <div class="col s12 m9 l10">
+            <p>After a long research I have finally found a good solution to deploy Django settings into several stages, which is production, development and common shared settings.</p>
+<p>I have also found a good way to deploy Django overall, which I'll be writing soon.</p>
+<p>Just to clarify, there is not standard way of deploying Django, however I think the method I put together is a very good way for deployment.</p>
+<h3 id="where-should-the-settings-be-stored">Where should the settings be stored?</h3>
+<p>The settings are better accommodated within a settings module rather than a single <code>settings.py</code> file.</p>
+<p>I've seen a lot of articles where people are storing everything in one single <code>settings.py</code>  file and then at the bottom they include:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">settings_local</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">pass</span>
+</code></pre></div><p>Which means that settings variables from <code>settings_local.py</code> will override settings from <code>settings.py</code>. There is two options here and they are not good enough specially if you are using git or any other version control software.</p>
+<p><strong>Option 1</strong>:
+Don't ever commit <code>settings_local.py</code>, but in this case you will have to keep your credentials and other sensitive information in <code>settings.py</code>, not good enough as they are not environment independent.</p>
+<p><strong>Option 2:</strong>
+Same as above, however create a separate <code>settings_local.py</code> in the production environment and add the credentials and sensitive information there. Not good, because you can not version control and you will have to keep the settings remotely up-to-date, hard to keep track of.</p>
+<h3 id="how-can-i-properly-implement-the-settings-to-accommodate-both-environments">How can I properly implement the settings to accommodate both environments?</h3>
+<p>This is where the <strong>settings module</strong> comes in very handy, let's break it down and create our settings module.</p>
+<p>First let's see the Django directory structure when we create a new app with:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">django</span><span class="o">-</span><span class="n">admin</span> <span class="n">startproject</span> <span class="n">my_app</span>
+</code></pre></div><p>Structure:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">my_app/
+    manage.py
+    my_app/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+</code></pre></div><p>As you can see we have a single <code>settings.py</code> file.</p>
+<p>Now let's go ahead and create the settings module directory.</p>
+<p><strong>Note</strong>: The settings directory needs to be at the same level as the <code>settings.py</code> and don't forget to create the file <code>__init__.py</code>, otherwise python will not recognise as a module.</p>
+<p>Creating the directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /Users/&lt;user&gt;/webprojects/my_app/my_app
+mkdir settings
+touch settings/__init__.py
+</code></pre></div><p>Now we have the following structure:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">my_app/
+    manage.py
+    my_app/
+        __init__.py
+        settings.py
+        settings/
+            __init__.py
+        urls.py
+        wsgi.py
+</code></pre></div><p>As you can see, we now have the <code>settings/</code> directory and it has the <code>__init__.py</code>, which we need to make it a module.</p>
+<p>Creating the common shared settings file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">touch settings/common.py
+</code></pre></div><p>Copy everything from settings.py into common.py:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat settings.py &gt; settings/common.py
+</code></pre></div><p>Now we have everything from settings.py in our common.py file. Now we can get rid of settings.py because we no longer need it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">rm -rf settings.py
+</code></pre></div><p>Now we can create the environment independent settings files into our settings module:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">touch settings/dev.py
+touch settings/prod.py
+</code></pre></div><p>The settings module is now complete and we have the following structure:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">my_app/
+    manage.py
+    my_app/
+        __init__.py
+        settings/
+            __init__.py
+            common.py
+            dev.py
+            prod.py
+        urls.py
+        wsgi.py
+</code></pre></div><p>Now we have an environment independent settings module, which is maintainable in both environments.</p>
+<p>All you have to do now is include in <code>dev.py</code> and <code>prod.py</code> at the very top:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">.common</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre></div><p>You can now override any settings variable according to the environment you are going to use.</p>
+<p><strong>Note</strong>: When you want to run the server or execute anything from <code>manage.py</code>, you will need to specifically tell Django that you want to load the specific settings.</p>
+<p>To run the server on the local environment:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python manage.py runserver --settings<span class="o">=</span>settings.dev
+</code></pre></div><p>and for production:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python manage.py runserver --settings<span class="o">=</span>settings.prod
+</code></pre></div><p>##3.	What sensitive information should be separate from the main settings?</p>
+<p>Now we have reached an important question, because the Internet is a hostile place, we don't want to expose sensitive information and we wan't to keep this information as hidden as possible from prying eyes.</p>
+<p>This applies to database, email, secret key and anything with authentication related information.</p>
+<p>Again there are a lot of article there suggesting you create a separate file for sensitive information and read it from settings.</p>
+<p>Creating a file at /etc/my_app_settings.txt and setting strict permission is not a bad idea, however I think that environment variables are simpler and good for our use-case.</p>
+<p>A good place to keep these environment variables is in the <code>~/bash_profile</code>, so let's go ahead and create:</p>
+<p><strong>Note</strong>: This will only be applied to the production environment.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vim ~/.bash_profile
+</code></pre></div><p>and we are going to add:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># My_App specific environment variables</span>
+<span class="nb">export</span> <span class="nv">MY_APP_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;&lt;The app secret key&gt;&#39;</span>
+<span class="nb">export</span> <span class="nv">MY_APP_DB_USER</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="nb">export</span> <span class="nv">MY_APP_DB_NAME</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="nb">export</span> <span class="nv">MY_APP_DB_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="nb">export</span> <span class="nv">MY_APP_DB_HOST</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span>
+<span class="nb">export</span> <span class="nv">MY_APP_EMAIL_HOST</span><span class="o">=</span><span class="s1">&#39;smtp.gmail.com&#39;</span>
+<span class="nb">export</span> <span class="nv">MY_APP_EMAIL_HOST_USER</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="nb">export</span> <span class="nv">MY_APP_EMAIL_HOST_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="nb">export</span> <span class="nv">MY_APP_EMAIL_PORT</span><span class="o">=</span><span class="m">587</span>
+</code></pre></div><p>You might need to log-out and log-back-in for the variables to take effect or simply:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> ~/.bash_profile
+</code></pre></div><p>Once the environment variables are in place we can go to our <code>prod.py</code> and implement the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_SECRET_KEY</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">domain.com</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1">########## APP CONFIGURATION</span>
+
+<span class="n">INSTALLED_APPS</span> <span class="o">+</span><span class="o">=</span> <span class="p">(</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">gunicorn</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">########## END APP CONFIGURATION</span>
+
+
+<span class="c1">########## DATABASE CONFIGURATION</span>
+
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">default</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ENGINE</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">django.db.backends.postgresql_psycopg2</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">NAME</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_DB_NAME</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">USER</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_DB_USER</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">PASSWORD</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_DB_PASSWORD</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">HOST</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_DB_HOST</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">PORT</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">5432</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">########## END DATABASE CONFIGURATION</span>
+
+
+<span class="c1">########## EMAIL SETTING</span>
+
+<span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_EMAIL_HOST</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+<span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_EMAIL_HOST_USER</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+<span class="n">EMAIL_HOST_PASSWORD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_EMAIL_HOST_PASSWORD</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+<span class="n">EMAIL_PORT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">MY_APP_EMAIL_PORT</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+<span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c1">########## END EMAIL SETTING</span>
+</code></pre></div><p><strong>Note</strong>: We are currently using <code>os.environ.get('')</code> to get the environment variables, so you need to <code>import os</code> for it to work and the settings above is just an example, feel free to adjust as needed.</p>
+<p>And that's it.</p>
+
+        </div>
+        <aside>
+            <div class="col hide-on-small-only m3 l2">
+                <div class="section table-of-contents pushpin right">
+                    <h4>Contents</h4>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#where-should-the-settings-be-stored">Where should the settings be stored?</a></li>
+    <li><a href="#how-can-i-properly-implement-the-settings-to-accommodate-both-environments">How can I properly implement the settings to accommodate both environments?</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+        </aside>
+        
+    </div>
+
+<ul class="tags">
+    <li><i class="fal fa-hashtag"></i></li>
+    
+    <li>
+        <a href="http://queiroz.org/tags/django/">django</a>
+    </li>
+    <li>
+        <a href="http://queiroz.org/tags/python/">python</a>
+    </li></ul>
+</article>
+
+
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36px"
+                    height="36px">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="http://queiroz.org/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tableOfContents = document.querySelector(".table-of-contents")
+        if (tableOfContents != null) {
+            
+            let pageMetadata = document.querySelector('.page-metadata');
+            let pushpin = document.querySelectorAll('.pushpin');
+            let pushpinMarginTop = pageMetadata.offsetTop + pageMetadata.offsetHeight + 20
+            let pushpinInstance = M.Pushpin.init(pushpin, {
+                top: pushpinMarginTop
+            });
+            
+            let headers = document.getElementsByTagName("h3")
+            for (var i = 0; i < headers.length; ++i) {
+                headers[i].setAttribute("class", "section scrollspy")
+            }
+            let elems = document.querySelectorAll('.scrollspy')
+            let scrollspyInstance = M.ScrollSpy.init(elems, {
+                scrollOffset: 80
+            })
+        }
+    });
+</script>
+
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>

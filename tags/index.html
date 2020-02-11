@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<title>Tags</title>
+
+
+<link rel="stylesheet" href="http://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="http://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="http://queiroz.org/tags/">
+
+<link href="/tags/index.xml" rel="alternate" type="application/rss+xml" />
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="http://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="active">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main><header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Tags</h1>
+        <h2><span class="cursor">|</span></h2>
+        
+    </div>
+</header><div class="home container">
+
+    <div class="cloud-tags">
+    <ul class="tags">
+        
+        <li>Dart 1</li>
+        
+        <li>Django 1</li>
+        
+        <li>Flutter 1</li>
+        
+        <li>Linux 5</li>
+        
+        <li>Python 2</li>
+        
+        <li>Vim 1</li>
+        
+    </ul>
+</div>
+
+
+<script src="http://queiroz.org/js/wordcloud2.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tagElements = document.querySelector('.tags').children;
+        let tags = Array();
+        for (i = 0; i < tagElements.length; i++) {
+            let tag = tagElements[i].innerHTML.split(" ")
+            tag[1] = tag[1] * 20
+            tags.push(tag)
+        }
+        let cloudTags = document.querySelector('.cloud-tags');
+        WordCloud(cloudTags, {
+            list: tags,
+            fontFamily: 'Open Sans, sans-serif',
+            minSize: 16,
+            drawOutOfBound: false,
+            rotateRatio: 0.5,
+            rotationSteps: 2,
+            backgroundColor: '#ffffff',
+            color: function (word, weight) {
+                if (weight < 100) {
+                    return '#8e8e8e'
+                } else if (weight >= 100) {
+                    return '#3F3F3F'
+                } else if (weight >= 1000) {
+                    return '#303030'
+                } else if (weight >= 10000) {
+                    return '#212121'
+                } else {
+                    return '#111111'
+                }
+            },
+            click: function (item, dimention, event) {
+                let tag = item[0].toLowerCase()
+                window.location.href = '/tags/'+ tag;
+            }
+        });
+    });
+</script>
+    
+</div>
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36px"
+                    height="36px">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="http://queiroz.org/js/materialize.min.js"></script>
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>

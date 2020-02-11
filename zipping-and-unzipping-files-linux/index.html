@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Learn how to zip and unzip files in Unix alike operating systems">
+<title>Zipping and Unzipping Files Linux</title>
+
+
+<link rel="stylesheet" href="http://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="http://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="http://queiroz.org/zipping-and-unzipping-files-linux/">
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="http://queiroz.org/css/light.syntax.highlight.css">
+
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="http://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main>
+
+<header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Zipping and Unzipping Files Linux</h1>
+        <h2>Learn how to zip and unzip files in Unix alike operating systems<span class="cursor">|</span></h2>
+        
+        <div class="info">
+            <p>
+                <span>
+                    
+                    
+                    
+                    <time pubdate="pubdate">Nov 12, 2013 ·</time>
+                    
+                </span>
+                <span>
+                   1 min read
+                </span>
+            </p>
+        </div>
+        
+    </div>
+</header>
+
+
+<article class="page container">
+    <div class="row">
+        
+        <div class="col s12 m12 l12">
+            <p>Linux has a <strong>Zip</strong> and <strong>Unzip</strong> program, which allows you to compress or decompress files, however most distributions does not come with it installed by default. You can install this programs with the Shell prompt. Open Application &gt; System Tools &gt; Terminal.</p>
+<p>Type the following command to install on Debian based operating systems like, Ubuntu, Mint and so on:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt-get install zip
+apt-get install unzip
+</code></pre></div><p>or</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install zip unzip
+</code></pre></div><p>If you are on RedHat based operating systems like CentOS:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum install zip
+yum install unzip
+</code></pre></div><h3 id="zipping-files-and-directories">Zipping files and directories</h3>
+<p>This will create a file called data.zip and will add all files to the compressed archive:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zip data *
+</code></pre></div><p><strong>Note</strong>: No need to add <strong>.zip</strong> extension or suffix as it is added automatically by zip command.</p>
+<p>To zip the entire directory and files, that includes subdirectories as well type the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">zip -r data *
+</code></pre></div><h3 id="unzipping-files-and-directories">Unzipping files and directories</h3>
+<p>To extract all files from <strong>data.zip</strong> you can do the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">unzip  data.zip
+</code></pre></div><p>To extract a single file called <strong>test.txt</strong> from <strong>data.zip</strong> you can do:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">unzip data.zip  test.txt
+</code></pre></div><p>To extract all files into the <strong>/opt</strong> directory simply do:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">unzip data.zip  -d /opt
+</code></pre></div><p>To list all files from <strong>data.zip</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">unzip -l data.zip
+</code></pre></div>
+        </div>
+        
+    </div>
+
+<ul class="tags">
+    <li><i class="fal fa-hashtag"></i></li>
+    
+    <li>
+        <a href="http://queiroz.org/tags/linux/">linux</a>
+    </li></ul>
+</article>
+
+
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36px"
+                    height="36px">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="http://queiroz.org/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tableOfContents = document.querySelector(".table-of-contents")
+        if (tableOfContents != null) {
+            
+            let pageMetadata = document.querySelector('.page-metadata');
+            let pushpin = document.querySelectorAll('.pushpin');
+            let pushpinMarginTop = pageMetadata.offsetTop + pageMetadata.offsetHeight + 20
+            let pushpinInstance = M.Pushpin.init(pushpin, {
+                top: pushpinMarginTop
+            });
+            
+            let headers = document.getElementsByTagName("h3")
+            for (var i = 0; i < headers.length; ++i) {
+                headers[i].setAttribute("class", "section scrollspy")
+            }
+            let elems = document.querySelectorAll('.scrollspy')
+            let scrollspyInstance = M.ScrollSpy.init(elems, {
+                scrollOffset: 80
+            })
+        }
+    });
+</script>
+
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>

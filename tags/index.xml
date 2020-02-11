@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Learning New Technologies. Sharing knowledge.</title>
+    <link>http://queiroz.org/tags/</link>
+    <description>Recent content in Tags on Learning New Technologies. Sharing knowledge.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 14 Nov 2019 21:01:12 +0000</lastBuildDate>
+    
+	<atom:link href="http://queiroz.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dart</title>
+      <link>http://queiroz.org/tags/dart/</link>
+      <pubDate>Thu, 14 Nov 2019 21:01:12 +0000</pubDate>
+      
+      <guid>http://queiroz.org/tags/dart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Flutter</title>
+      <link>http://queiroz.org/tags/flutter/</link>
+      <pubDate>Thu, 14 Nov 2019 21:01:12 +0000</pubDate>
+      
+      <guid>http://queiroz.org/tags/flutter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://queiroz.org/tags/linux/</link>
+      <pubDate>Wed, 19 Oct 2016 01:17:50 +0000</pubDate>
+      
+      <guid>http://queiroz.org/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Django</title>
+      <link>http://queiroz.org/tags/django/</link>
+      <pubDate>Sun, 25 Sep 2016 01:06:49 +0000</pubDate>
+      
+      <guid>http://queiroz.org/tags/django/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>http://queiroz.org/tags/python/</link>
+      <pubDate>Sun, 25 Sep 2016 01:06:49 +0000</pubDate>
+      
+      <guid>http://queiroz.org/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vim</title>
+      <link>http://queiroz.org/tags/vim/</link>
+      <pubDate>Thu, 21 Nov 2013 00:53:36 +0000</pubDate>
+      
+      <guid>http://queiroz.org/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

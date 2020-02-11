@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Learn the basics of Vim an awesome text-editor">
+<title>Vim Basic Movements</title>
+
+
+<link rel="stylesheet" href="http://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="http://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="http://queiroz.org/vim-basic-movements/">
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="http://queiroz.org/css/light.syntax.highlight.css">
+
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="http://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main>
+
+<header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Vim Basic Movements</h1>
+        <h2>Learn the basics of Vim an awesome text-editor<span class="cursor">|</span></h2>
+        
+        <div class="info">
+            <p>
+                <span>
+                    
+                    
+                    
+                    <time pubdate="pubdate">Nov 12, 2013 ·</time>
+                    
+                </span>
+                <span>
+                   3 min read
+                </span>
+            </p>
+        </div>
+        
+    </div>
+</header>
+
+
+<article class="page container">
+    <div class="row">
+        
+        <div class="col s12 m9 l10">
+            <p>Vim is an open source text editor mainly used by Unix based operating systems, however Vim is cross-platform, meaning it can be used on Unix, Linux, Mac OS X, Windows, iOS, Android.</p>
+<p>Vim was design to be used on command line interface and as a standalone application in a graphical user interface.</p>
+<p>Vim can be very annoying at the beginning because of its commands and configuration, but once you learn how powerful this text editor is, you will definitely see how fast your production can be. </p>
+<p>In this tutorial you will learn the basics of Vim movements and from here move on to a more advanced level. Once you get the grasps of Vim, I can guarantee that it will pay off all the effort that you have put into it.</p>
+<h3 id="moving-through-text">Moving through text</h3>
+<p>Moving through the text is usually possible with the arrow keys, but not recommended if you really want to learn vim.</p>
+<p><code>h</code> move left.</p>
+<p><code>l</code> move right.</p>
+<p><code>k</code> move up.</p>
+<p><code>j</code> move down.</p>
+<h3 id="move-to-the-beginning-or-end-of-the-line">Move to the beginning or end of the line</h3>
+<p>Useful and fast way to move to the beginning and end of a line.</p>
+<p><code>0</code> move to the beginning of the line.</p>
+<p><code>$</code> move to the end of the line.</p>
+<h3 id="forward-and-backward-word-movements">Forward and backward word movements</h3>
+<p>Great for moving around a line jumping words.</p>
+<p><code>w</code> move forward to the beginning of the next word.</p>
+<p><code>W</code> the same as <code>w</code> except it moves to the next non-blank character (meaning jumps to the next word after the space character).</p>
+<p><code>e</code> move to the end of the word.</p>
+<p><code>E</code> the same as <code>e</code> except it moves to the next non-blank character.</p>
+<h3 id="move-to-the-specified-characters-on-the-line">Move to the specified characters on the line</h3>
+<p>The powerful and amazing keys <code>f</code>, <code>F</code>, <code>t</code>, <code>T</code> and <code>;</code> that let you move to specific characters within a line.</p>
+<p><code>f</code> followed by another key, move the cursor to the next instance of that characters on the current line.</p>
+<p><code>F</code> does the same backward.</p>
+<p><code>t</code> and <code>T</code> do the same, but they stop right before the character.</p>
+<p><code>;</code> repeat latest <code>f</code>, <code>t</code>, <code>F</code> or <code>T</code></p>
+<h3 id="paging">Paging</h3>
+<p>Very useful keys for moving the page up and down by full pages.</p>
+<p><code>CTRL + f</code> move page down.</p>
+<p><code>CTRL + b</code> move page up.</p>
+<h3 id="jumping-to-screen-parts">Jumping to screen parts</h3>
+<p>These keys will allow you to move to the head, middle and last line of a screen.</p>
+<p><code>H</code> move to the head.</p>
+<p><code>M</code> mode to the middle.</p>
+<p><code>L</code> move to the last line.</p>
+<h3 id="top-and-bottom">Top and bottom</h3>
+<p>Jumping to the top and bottom of the entire buffer.</p>
+<p><code>gg</code> move to the top.</p>
+<p><code>G</code> move to the bottom.</p>
+<h3 id="jumping-to-a-particular-line">Jumping to a particular line</h3>
+<p>How to get to a specific line number.</p>
+<p><code>Num + G</code></p>
+
+        </div>
+        <aside>
+            <div class="col hide-on-small-only m3 l2">
+                <div class="section table-of-contents pushpin right">
+                    <h4>Contents</h4>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#moving-through-text">Moving through text</a></li>
+    <li><a href="#move-to-the-beginning-or-end-of-the-line">Move to the beginning or end of the line</a></li>
+    <li><a href="#forward-and-backward-word-movements">Forward and backward word movements</a></li>
+    <li><a href="#move-to-the-specified-characters-on-the-line">Move to the specified characters on the line</a></li>
+    <li><a href="#paging">Paging</a></li>
+    <li><a href="#jumping-to-screen-parts">Jumping to screen parts</a></li>
+    <li><a href="#top-and-bottom">Top and bottom</a></li>
+    <li><a href="#jumping-to-a-particular-line">Jumping to a particular line</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+        </aside>
+        
+    </div>
+
+<ul class="tags">
+    <li><i class="fal fa-hashtag"></i></li>
+    
+    <li>
+        <a href="http://queiroz.org/tags/vim/">vim</a>
+    </li></ul>
+</article>
+
+
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36px"
+                    height="36px">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="http://queiroz.org/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tableOfContents = document.querySelector(".table-of-contents")
+        if (tableOfContents != null) {
+            
+            let pageMetadata = document.querySelector('.page-metadata');
+            let pushpin = document.querySelectorAll('.pushpin');
+            let pushpinMarginTop = pageMetadata.offsetTop + pageMetadata.offsetHeight + 20
+            let pushpinInstance = M.Pushpin.init(pushpin, {
+                top: pushpinMarginTop
+            });
+            
+            let headers = document.getElementsByTagName("h3")
+            for (var i = 0; i < headers.length; ++i) {
+                headers[i].setAttribute("class", "section scrollspy")
+            }
+            let elems = document.querySelectorAll('.scrollspy')
+            let scrollspyInstance = M.ScrollSpy.init(elems, {
+                scrollOffset: 80
+            })
+        }
+    });
+</script>
+
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>

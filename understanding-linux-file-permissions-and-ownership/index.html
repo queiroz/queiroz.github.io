@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Learn how to set file permissions on Linux Operating Systems">
+<title>Understanding Linux File Permissions and Ownership</title>
+
+
+<link rel="stylesheet" href="http://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="http://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="http://queiroz.org/understanding-linux-file-permissions-and-ownership/">
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="http://queiroz.org/css/light.syntax.highlight.css">
+
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="http://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main>
+
+<header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Understanding Linux File Permissions and Ownership</h1>
+        <h2>Learn how to set file permissions on Linux Operating Systems<span class="cursor">|</span></h2>
+        
+        <div class="info">
+            <p>
+                <span>
+                    
+                    
+                    
+                    <time pubdate="pubdate">Oct 01, 2016 ·</time>
+                    
+                </span>
+                <span>
+                   4 min read
+                </span>
+            </p>
+        </div>
+        
+    </div>
+</header>
+
+
+<article class="page container">
+    <div class="row">
+        
+        <div class="col s12 m9 l10">
+            <p>The Linux permissions are composed of 9 bits, which are assigned to files and folders and it appears as <code>-rwxrwxrwx</code>.</p>
+<p><strong>Note</strong>: For a regular file a dash appears right in front of the 9-bits, however if it is a directory then you will see a <code>d</code> right in front of it instead of a dash, this is to indicate that it is a directory.</p>
+<p>E.g.</p>
+<p><code>l</code> for (symbolic link)</p>
+<p><code>b</code> for (block device)</p>
+<p><code>c</code> for (character device)</p>
+<p><code>s</code> for (socket)</p>
+<p><code>p</code> for (named pipe)</p>
+<p>The <code>-rwxrwxrwx</code> simply means what type of permissions are assigned to the particular file or directory, and the order of permissions are divided into three groups of 3 bits each. First three bits is for the file <code>owner</code>, the next three for the <code>group</code> assigned to the file and the last three for <code>others</code>, which means everyone else. Take a look at the table below to understand better.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Owner</th>
+<th align="center">Group</th>
+<th align="center">Others</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">rwx</td>
+<td align="center">rwx</td>
+<td align="center">rwx</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: Whenever you see a dash <code>-</code> instead of a letter in the permissions e.g. <code>-rw-r--r--</code> it simply means that permissions are turned off.</p>
+<p><strong>Binary representation of numeric permissions</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Binary</th>
+<th>16</th>
+<th>8</th>
+<th>4</th>
+<th>2</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Permission</td>
+<td></td>
+<td></td>
+<td>r</td>
+<td>w</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Permissions Table</strong>:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Permissions</th>
+<th align="center">Binary Value</th>
+<th align="left">File (permissions)</th>
+<th align="left">Directory (permissions)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">r = read</td>
+<td align="center">4</td>
+<td align="left">View what's in the file.</td>
+<td align="left">View list of files and sub-directories it contains</td>
+</tr>
+<tr>
+<td align="left">w = write</td>
+<td align="center">2</td>
+<td align="left">Change the file's  content, rename or delete.</td>
+<td align="left">Add files or sub-directories, remove files or directories</td>
+</tr>
+<tr>
+<td align="left">x = execute</td>
+<td align="center">1</td>
+<td align="left">Run the file as a program.</td>
+<td align="left">Search through dir, execute program within, access meta data (file size, time stamps so on)</td>
+</tr>
+</tbody>
+</table>
+<p>There are 2 ways to change file permissions in Linux, by (numbers) and (letters), let's cover them both.</p>
+<h3 id="changing-permissions-with-chmod-numbers">Changing Permissions with chmod (numbers)</h3>
+<p>If you currently own a file or directory then you can change it's permission and because we are using numbers to change permissions, the binary table above will help you understand how we came to this values.</p>
+<p>As you can see above on the table, we have <code>r = 4, w = 2 and x = 1</code> and to stablish what permissions you want to give for a particular <code>owner, group or others</code>, all you have to do is sum them up.</p>
+<p>E.g.</p>
+<p>Let's give full permission to everyone <code>owner, group and others</code> which represents <code>rwxrwxrwx</code> as you've seen above.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod <span class="m">777</span> file
+</code></pre></div><p>As you can see we have given <code>7</code> to each one <code>owner, group and others</code>, which is <code>r + w + x = 4 + 2 + 1</code> and all we did was sum the values.</p>
+<p>Now let's give <code>rwx</code> for the <code>owner</code> and <code>r-x</code> for <code>group and others</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod <span class="m">755</span> file
+</code></pre></div><p>The above will result in <code>rwxr-xr-x</code></p>
+<p>You can also set no permissions at all, which will result in <code>---------</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod <span class="m">000</span> file
+</code></pre></div><p>The <code>chmod</code> command can also be used recursively, suppose you want to give the same permissions to an entire directory structure, you can use <code>-R</code> argument as follows:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod -R <span class="m">755</span> /home/webapp
+</code></pre></div><h3 id="changing-permissions-with-chmod-letters">Changing Permissions with chmod (letters)</h3>
+<p>This method is slightly different than the above, but it is also simple in fact it might be even easier for some. You can use plus <code>+</code> and minus <code>-</code> signs to change permissions on and off, followed by letters to indicate what changes and for whom.</p>
+<p>Same as the above we would change permissions for:</p>
+<p><code>u</code> for (user)</p>
+<p><code>g</code> for (group)</p>
+<p><code>o</code> for (others)</p>
+<p><code>a</code> for (all)</p>
+<p>As you can see it is slightly different, but a <code>user</code> can also be considered as the <code>owner</code> and the <code>a</code> is for all <code>user, group and others</code>.</p>
+<p>Consider that <code>file</code> will have all permissions given e.g. <code>rwxrwxrwx</code> similarly <code>777</code>.</p>
+<p>Now let's remove the <code>write</code> permissions from everyone <code>a</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod a-w file
+</code></pre></div><p>The above will result in <code>r-xr-xr-x</code>.</p>
+<p>Now let's remove the <code>execute</code> permission from <code>others</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod o-x file
+</code></pre></div><p>The above will result in <code>rwxrwxrw-</code>.</p>
+<p>Now let's remove <code>rwx</code> from <code>group and others</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod go-rwx file
+</code></pre></div><p>The above will result in <code>rwx------</code>.</p>
+<p>Consider that <code>file</code> will have all permissions off e.g. <code>---------</code> similarly <code>000</code>.</p>
+<p>Now let's give the <code>user</code> <code>read and write</code> permissions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod u+rw file
+</code></pre></div><p>The above will result in <code>rw-------</code>.</p>
+<p>Now let's give everyone <code>a</code> <code>execute</code> permissions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod a+x file
+</code></pre></div><p>The above will result in <code>--x--x--x</code>.</p>
+<p>Now let's give <code>user and group</code> <code>read and execute</code> permissions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod ug+rx file
+</code></pre></div><p>The above will result in <code>r-xr-x---</code>.</p>
+<p>Now to the recusive part, let's add <code>write</code> permissions for <code>group</code> in the entire directory structure <code>webapp</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod -R g+w /home/webapp
+</code></pre></div><h3 id="default-permissions-on-creation">Default permissions on creation</h3>
+<p>Files and directories are created with a set of default permissions.</p>
+<p>For non-root user:</p>
+<ul>
+<li>Files - usually 644</li>
+<li>Directory - usually 755</li>
+</ul>
+<h3 id="special-file-perms">Special File Perms</h3>
+<p>SUID (4) - Used on executables. Run with the privileges of the file's owner.</p>
+<p>SGID (2) - Used on executables. It is the same idea as the SUID, but with group privileges. For directories it makes all files created in that directory have the directories group ownership.</p>
+<p>&ldquo;Sticky&rdquo; Bit (1) - When used on directories, only a file's owner can delete the file and not members of the same group or other users.</p>
+
+        </div>
+        <aside>
+            <div class="col hide-on-small-only m3 l2">
+                <div class="section table-of-contents pushpin right">
+                    <h4>Contents</h4>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#changing-permissions-with-chmod-numbers">Changing Permissions with chmod (numbers)</a></li>
+    <li><a href="#changing-permissions-with-chmod-letters">Changing Permissions with chmod (letters)</a></li>
+    <li><a href="#default-permissions-on-creation">Default permissions on creation</a></li>
+    <li><a href="#special-file-perms">Special File Perms</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+        </aside>
+        
+    </div>
+
+<ul class="tags">
+    <li><i class="fal fa-hashtag"></i></li>
+    
+    <li>
+        <a href="http://queiroz.org/tags/linux/">linux</a>
+    </li></ul>
+</article>
+
+
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36px"
+                    height="36px">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="http://queiroz.org/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tableOfContents = document.querySelector(".table-of-contents")
+        if (tableOfContents != null) {
+            
+            let pageMetadata = document.querySelector('.page-metadata');
+            let pushpin = document.querySelectorAll('.pushpin');
+            let pushpinMarginTop = pageMetadata.offsetTop + pageMetadata.offsetHeight + 20
+            let pushpinInstance = M.Pushpin.init(pushpin, {
+                top: pushpinMarginTop
+            });
+            
+            let headers = document.getElementsByTagName("h3")
+            for (var i = 0; i < headers.length; ++i) {
+                headers[i].setAttribute("class", "section scrollspy")
+            }
+            let elems = document.querySelectorAll('.scrollspy')
+            let scrollspyInstance = M.ScrollSpy.init(elems, {
+                scrollOffset: 80
+            })
+        }
+    });
+</script>
+
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>

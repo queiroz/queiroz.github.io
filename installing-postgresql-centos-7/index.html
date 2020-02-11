@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Steps to install PostgreSQL on Centos 7">
+<title>Installing Postgresql Centos 7</title>
+
+
+<link rel="stylesheet" href="http://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="http://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="http://queiroz.org/installing-postgresql-centos-7/">
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="http://queiroz.org/css/light.syntax.highlight.css">
+
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="http://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main>
+
+<header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Installing Postgresql Centos 7</h1>
+        <h2>Steps to install PostgreSQL on Centos 7<span class="cursor">|</span></h2>
+        
+        <div class="info">
+            <p>
+                <span>
+                    
+                    
+                    
+                    <time pubdate="pubdate">Sep 12, 2016 ·</time>
+                    
+                </span>
+                <span>
+                   4 min read
+                </span>
+            </p>
+        </div>
+        
+    </div>
+</header>
+
+
+<article class="page container">
+    <div class="row">
+        
+        <div class="col s12 m12 l12">
+            <p>You can check which version of Centos you are running by:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /etc/redhat-release
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">CentOS Linux release 7.2.1511 <span class="o">(</span>Core<span class="o">)</span>
+</code></pre></div><h3 id="install-the-repository-for-the-latest-stable-version">Install the repository for the latest stable version:</h3>
+<p>Add <code>&quot;exclude=postgresql*&quot;</code> to code blocks <code>[base]</code> and <code>[updates]</code> sections in <code>/etc/yum.repos.d/CentOS-Base.repo</code> to avoid outdated yum packages.</p>
+<p>Then Install the latest version repo RPMs for Centos 7.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Get the link <span class="k">for</span> the latest stable version at http://yum.postgresql.org/repopackages.php
+yum localinstall &lt;link from the comment above&gt;
+</code></pre></div><p>As of this writing version <strong>PostgreSQL 9.5</strong> for Centos 7.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum localinstall  https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm
+</code></pre></div><p>For more information you can check <strong>postgres</strong> <a href="https://wiki.postgresql.org/wiki/YUM_Installation">documentation</a>{: target=&rdquo;_blank&rdquo; }</p>
+<p><strong>List available packages</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum update
+yum list postgres*
+</code></pre></div><h3 id="install-postgresql-95-server-and-contrib">Install PostgreSQL 9.5 server and contrib</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum install postgresql95 postgresql95-server postgresql95-libs postgresql95-contrib postgresql95-devel
+</code></pre></div><p><strong>Initialise db for first use (one time only)</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/usr/pgsql-y.x/bin/postgresqlyx-setup initdb
+</code></pre></div><p>e.g:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/usr/pgsql-9.5/bin/postgresql95-setup initdb
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Initializing database ... OK
+</code></pre></div><p>If you want PostgreSQL to start automatically when the OS starts:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chkconfig &lt;name&gt; on
+</code></pre></div><p>e.g:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chkconfig postgresql-9.5 on
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Note: Forwarding request to <span class="s1">&#39;systemctl enable postgresql-9.5.service&#39;</span>.
+Created symlink from /etc/systemd/system/multi-user.target.wants/postgresql-9.5.service to /usr/lib/systemd/system/postgresql-9.5.service.
+</code></pre></div><p>You can check a list of services, type:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl list-unit-files
+</code></pre></div><h3 id="to-control-the-database-service">To control the database service</h3>
+<p>where &lt;<strong>command</strong>&gt; can be:</p>
+<ul>
+<li><strong>start</strong> : start the database</li>
+<li><strong>stop</strong> : stop the database</li>
+<li><strong>restart</strong> : stop/start the database; used to read changes to core configuration files</li>
+<li><strong>reload</strong> : reload <strong>pg_hba.conf</strong> file while keeping database running</li>
+</ul>
+<p>E.g:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">service postgresql-9.5 start
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Redirecting to /bin/systemctl start  postgresql-9.5.service
+</code></pre></div><h3 id="add-firewall-permissions">Add firewall permissions</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">firewall-cmd --permanent --add-port<span class="o">=</span>5432/tcp
+firewall-cmd --permanent --add-port<span class="o">=</span>80/tcp
+firewall-cmd --reload
+</code></pre></div><p>if you get <code>bash: firewall-cmd: command not found</code></p>
+<p>Two possible options:</p>
+<ul>
+<li>Your PATH does not contain <strong>/usr/bin</strong></li>
+<li><strong>firewall-cmd</strong> is not installed</li>
+</ul>
+<p>Install:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum install firewalld
+</code></pre></div><p>To enable firewalld, run the following command as root:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl <span class="nb">enable</span> firewalld
+</code></pre></div><p>To start firewalld, run the following command as root:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl start firewalld
+</code></pre></div><p>To check the status of firewalld, run the following command as root:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status firewalld
+</code></pre></div><p>Run the following command to make PostgreSQL work if <strong>SELinux</strong> is enabled on your system.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">setsebool -P httpd_can_network_connect_db <span class="m">1</span>
+</code></pre></div><p>You may not be able login to PostegreSQL if you didn’t run the above command.</p>
+<p><strong>Access PostgreSQL command prompt</strong>:</p>
+<p>The default database name and database user are “<strong>postgres</strong>”. Switch to postgres user to perform postgresql related operations:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">su - postgres
+</code></pre></div><p>To login to postgresql, enter the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">psql
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">psql <span class="o">(</span>9.5.4<span class="o">)</span>
+Type <span class="s2">&#34;help&#34;</span> <span class="k">for</span> help.
+<span class="nv">postgres</span><span class="o">=</span>#
+</code></pre></div><p>Check the version to confirm:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">SELECT version<span class="o">(</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">                                                 version                                                 
+---------------------------------------------------------------------------------------------------------
+ PostgreSQL 9.5.4 on x86_64-pc-linux-gnu, compiled by gcc <span class="o">(</span>GCC<span class="o">)</span> 4.8.5 <span class="m">20150623</span> <span class="o">(</span>Red Hat 4.8.5-4<span class="o">)</span>, 64-bit
+<span class="o">(</span><span class="m">1</span> row<span class="o">)</span>
+</code></pre></div><p>Set “postgres” user password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \password postgres</span> 
+Enter new password: 
+Enter it again: 
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># \q</span>
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Enter new password: 
+Enter it again: 
+</code></pre></div><h3 id="create-new-user-and-database">Create New User and Database</h3>
+<p>For example, let us create a new user called “<strong>demouser</strong>” with password “<strong>demo</strong>”, and database called “<strong>demodb</strong>”.</p>
+<p>Switch to postgres user:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">su - postgres
+</code></pre></div><p>Create user <strong>demouser</strong>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ createuser demouser
+</code></pre></div><p>Create database:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ createdb demodb
+</code></pre></div><p>Now, we need to login to the <em>psql</em> prompt, and set password and Grant access to the database <strong>demodb</strong> for the user <strong>demouser</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ psql
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">psql <span class="o">(</span>9.5.4<span class="o">)</span>
+Type <span class="s2">&#34;help&#34;</span> <span class="k">for</span> help.
+</code></pre></div><p><strong>Set password for demouser</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># alter user demouser with encrypted password &#39;demo&#39;;</span>
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ALTER ROLE
+</code></pre></div><p>Add privileges to <strong>demouser</strong> on the database <strong>demodb</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># grant all privileges on database demodb to demouser;</span>
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">GRANT
+</code></pre></div><h3 id="delete-users-and-databases">Delete Users and Databases</h3>
+<p>To delete the database, switch to postgres user:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">su - postgres
+</code></pre></div><p>If you are already at the postgres prompt, go back to bash.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \q</span>
+</code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">-bash-4.2$
+</code></pre></div><p>Enter command to delete the database:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dropdb demodb
+</code></pre></div><p>Enter command to delete the user:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dropuser demouser
+</code></pre></div><p>Since we've set password for the default user postgres we need to change some settings.</p>
+<p>Configure PostgreSQL-MD5 Authentication. MD5 authentication requires the client to supply an MD5-encrypted password for authentication. To do that, edit <code>/var/lib/pgsql/9.5/data/pg_hba.conf</code> file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vim /var/lib/pgsql/9.5/data/pg_hba.conf
+</code></pre></div><p>Add or Modify the lines as shown below:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+ <span class="c1"># &#34;local&#34; is for Unix domain socket connections only</span>
+<span class="nb">local</span>   all             all                                     md5
+ <span class="c1"># IPv4 local connections:</span>
+host    all             all             127.0.0.1/32            md5
+ <span class="c1"># IPv6 local connections:</span>
+host    all             all             ::1/128                 md5
+</code></pre></div><p>Restart postgresql service to apply the changes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart postgresql-9.5
+</code></pre></div>
+        </div>
+        
+    </div>
+
+<ul class="tags">
+    <li><i class="fal fa-hashtag"></i></li>
+    
+    <li>
+        <a href="http://queiroz.org/tags/linux/">linux</a>
+    </li></ul>
+</article>
+
+
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36px"
+                    height="36px">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="http://queiroz.org/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tableOfContents = document.querySelector(".table-of-contents")
+        if (tableOfContents != null) {
+            
+            let pageMetadata = document.querySelector('.page-metadata');
+            let pushpin = document.querySelectorAll('.pushpin');
+            let pushpinMarginTop = pageMetadata.offsetTop + pageMetadata.offsetHeight + 20
+            let pushpinInstance = M.Pushpin.init(pushpin, {
+                top: pushpinMarginTop
+            });
+            
+            let headers = document.getElementsByTagName("h3")
+            for (var i = 0; i < headers.length; ++i) {
+                headers[i].setAttribute("class", "section scrollspy")
+            }
+            let elems = document.querySelectorAll('.scrollspy')
+            let scrollspyInstance = M.ScrollSpy.init(elems, {
+                scrollOffset: 80
+            })
+        }
+    });
+</script>
+
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>

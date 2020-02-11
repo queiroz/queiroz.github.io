@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="You don&#39;t alway get up to date stable release with repository, better install from the source">
+<title>Installing Python From Source</title>
+
+
+<link rel="stylesheet" href="http://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="http://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="http://queiroz.org/installing-python-from-source/">
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="http://queiroz.org/css/light.syntax.highlight.css">
+
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="http://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main>
+
+<header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Installing Python From Source</h1>
+        <h2>You don&#39;t alway get up to date stable release with repository, better install from the source<span class="cursor">|</span></h2>
+        
+        <div class="info">
+            <p>
+                <span>
+                    
+                    
+                    
+                    <time pubdate="pubdate">Sep 01, 2016 ·</time>
+                    
+                </span>
+                <span>
+                   3 min read
+                </span>
+            </p>
+        </div>
+        
+    </div>
+</header>
+
+
+<article class="page container">
+    <div class="row">
+        
+        <div class="col s12 m12 l12">
+            <h3 id="getting-the-python-release">Getting the Python release</h3>
+<p>First we need to go to Python's source download link at <a href="https://www.python.org/downloads/source/">https://www.python.org/downloads/source/</a>{: target=&rdquo;_blank&rdquo; } and choose our Python version, for this tutorial I have chosen Python 3.5.2 as it's the latest stable release as of this writing.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
+</code></pre></div><p>or directory specific:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget -P /tmp https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
+</code></pre></div><p>The above command will download python 3.5.2 Gzipped source tarball to the current directory I'm currently in <code>/root</code>, you can specify <code>-P</code> as specified above to save on that directory.</p>
+<p>If you get:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash: wget: <span class="nb">command</span> not found
+</code></pre></div><p>Install with:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum install wget
+</code></pre></div><p>Once the file is downloaded you can <code>cd</code> to the directory you choose and extract the tarball file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tar xf Python-3.5.2.tgz
+</code></pre></div><p>The parameters passed in to the <code>tar</code> simply means &ldquo;<strong>extract from a file</strong>&quot;, don't expect any output as we have not specified, or you can pass in an extra parameter to force the output <code>xvf</code>, which means &ldquo;<strong>extract verbosely from a file</strong>&quot;.</p>
+<p>You should now have a directory called <strong>Python-3.5.2</strong>, which contains all python source.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> Python-3.5.2
+</code></pre></div><h3 id="building-python">Building Python</h3>
+<p>Most Unix based operating systems uses the same process to build, compile and install applications from source.</p>
+<p><code>./configure</code> prepare and link files to build the environment, generates makefile.
+<code>make</code> uses the makefile to connect libraries and compile.
+<code>make install</code> or <code>altinstall</code> in our case - copy compiled files generated by make and install the application as configured using ./configure.</p>
+<p>Please note that we will be using <code>make altinstall</code> to avoid future problems with other versions of python.</p>
+<p>You would generally see these 3-steps when building from the source.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./configure
+make
+make install
+</code></pre></div><p>Now we have almost everything set to start building Python, if you are installing on a fresh minimal Linux distribution as I am, you are probably going to need to install some other tools to compile, you can install the Development tools group which will contain all dependencies such as gcc, make etc.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum groupinstall <span class="s2">&#34;Development tools&#34;</span>
+</code></pre></div><p>Because python will try to install pip, we need to install some of it's dependencies so that our build works flawless.</p>
+<p>Pip is part of the Extra Packages for Enterprise Linux (EPEL), which is a community repository of non-standard packages for the RHEL distribution.</p>
+<p>Install the repository:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum -y install epel-release
+</code></pre></div><p>Now refresh the repository:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum repolist
+</code></pre></div><p>Pip is dependent on SSL/TLS, so let's install openssl.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum install openssl openssl-devel
+</code></pre></div><p>Next, we are going  to configure the installation directory  on <code>/usr/local</code>, we can change the path by passing extra parameters to <code>./configure</code>, to be exact <code>--prefix=/usr/local</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./configure --prefix<span class="o">=</span>/usr/local
+</code></pre></div><p>Now that we have a directory prefix set and configure we can execute make:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make
+</code></pre></div><p>The build process will kick off and it should compile smoothly, since we are using a stable version of Python.</p>
+<p>Whenever we are installing a custom version of Python we need to specifically use <code>altinstall</code> because we don't want to end up with two different versions of Python in the filesystem both name python. It can lead to problems that would be hard to diagnose.</p>
+<p>Install:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make altinstall
+</code></pre></div><p>You should now have Python installed in your system ready to go:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python3.5 --version
+Python 3.5.2
+</code></pre></div><p>For convenience you can make use of pip by creating a symlink:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ln -s /usr/local/bin/pip3.5 /usr/local/bin/pip
+</code></pre></div><p>and</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip --version
+pip 8.1.1 from /usr/local/lib/python3.5/site-packages <span class="o">(</span>python 3.5<span class="o">)</span>
+</code></pre></div>
+        </div>
+        
+    </div>
+
+<ul class="tags">
+    <li><i class="fal fa-hashtag"></i></li>
+    
+    <li>
+        <a href="http://queiroz.org/tags/linux/">linux</a>
+    </li>
+    <li>
+        <a href="http://queiroz.org/tags/python/">python</a>
+    </li></ul>
+</article>
+
+
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36px"
+                    height="36px">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="http://queiroz.org/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tableOfContents = document.querySelector(".table-of-contents")
+        if (tableOfContents != null) {
+            
+            let pageMetadata = document.querySelector('.page-metadata');
+            let pushpin = document.querySelectorAll('.pushpin');
+            let pushpinMarginTop = pageMetadata.offsetTop + pageMetadata.offsetHeight + 20
+            let pushpinInstance = M.Pushpin.init(pushpin, {
+                top: pushpinMarginTop
+            });
+            
+            let headers = document.getElementsByTagName("h3")
+            for (var i = 0; i < headers.length; ++i) {
+                headers[i].setAttribute("class", "section scrollspy")
+            }
+            let elems = document.querySelectorAll('.scrollspy')
+            let scrollspyInstance = M.ScrollSpy.init(elems, {
+                scrollOffset: 80
+            })
+        }
+    });
+</script>
+
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Learn more about Flutter and how one can benefit from this cross platform solution">
+<title>Why Flutter or Dart?</title>
+
+
+<link rel="stylesheet" href="http://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="http://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="http://queiroz.org/why-flutter-or-dart/">
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="http://queiroz.org/css/light.syntax.highlight.css">
+
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="http://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main>
+
+<header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Why Flutter or Dart?</h1>
+        <h2>Learn more about Flutter and how one can benefit from this cross platform solution<span class="cursor">|</span></h2>
+        
+        <div class="info">
+            <p>
+                <span>
+                    
+                    
+                    
+                    <time pubdate="pubdate">Nov 09, 2019 ·</time>
+                    
+                </span>
+                <span>
+                   11 min read
+                </span>
+            </p>
+        </div>
+        
+    </div>
+</header>
+
+
+<article class="page container">
+    <div class="row">
+        
+        <div class="col s12 m9 l10">
+            <p>Flutter is the new kid around the block, and it came with a lot of new concepts and features.</p>
+<p>Before we dive into learning more about Flutter and why is claimed to be the best cross-platform solution, we need to take a step back and look at existing available solutions.</p>
+<p>Cross-platform frameworks allow developers to write one single codebase and run the same code on multiple platforms.</p>
+<p>Big names such as <strong>Adobe</strong>, <strong>Microsoft</strong> and <strong>Facebook</strong> have attempted to solve the problem of duplicate codebases on both the Android and iOS platform.</p>
+<h3 id="apache-cordova-phonegap">Apache Cordova (PhoneGap)</h3>
+<p>PhoneGap initially created by Nitobi and later acquired by Adobe has been around for ten years and aims to solve the problem by allowing developers to write apps purely using HTML5, CSS3 and JavaScript.</p>
+<p>This type of apps is called hybrid apps, a mixture of native and web development.</p>
+<h3 id="xamarin-mono">Xamarin (Mono)</h3>
+<p>Xamarin initially created by Mono, an open-source platform based on the .NET framework later acquired by Microsoft has been around for eight years.</p>
+<p>C# is the language used to write Xamarin apps and is probably the one that comes the closest to Flutter; however, Xamarin also uses the bridge concept to map to UI elements.</p>
+<p>Xamarin uses the Mono runtime to convert c# .NET to machine code, and it does support several processors: ARM, MIPS (in 32-bit mode only), SPARC, PowerPC, S390 (in 64-bit mode), x86, x86-64 and IA-64 for 64-bit modes.</p>
+<h3 id="react-native">React Native</h3>
+<p>React Native created by Facebook takes a similar approach to PhoneGap by using web technologies and makes use of the React framework and has been around for four years.</p>
+<p>JavaScript is the language used to write apps due to the React web framework; however, React Native does not manipulate a virtual DOM. It does its job in a background thread (where JavaScript gets interpreted) for direct communication to end-devices using serialisation and bridge to native UI elements.</p>
+<h3 id="what-do-these-technologies-have-in-common">What do these technologies have in common?</h3>
+<p>They either use web views for UI rendering, or they use a bridge to map to native UI elements on both platforms Android and iOS.</p>
+<p>Using a bridge sort of feels right because what you see feels like a native app; however, there are performance costs involved in bridging on top of the OS rendering engine, it can also delay development if such frameworks do not keep up to date with latest Android or iOS native development.</p>
+<p>Another issue is that most cross-platform solutions do require developers to know native platform development (Android and iOS SDKs and programming languages, e.g. Java, Kotlin for Android and Objective-C, Swift for iOS).</p>
+<p>Now that we know a bit more about these technologies, we can jump into how Flutter, the framework created by Google attempts to solve the problem.</p>
+<blockquote>
+<p>Flutter is Google’s UI toolkit for building beautiful, natively compiled applications for <a href="https://flutter.dev/docs">mobile</a>, <a href="https://flutter.dev/web">web</a>, and <a href="https://flutter.dev/desktop">desktop</a> from a single codebase.</p>
+</blockquote>
+<p>Flutter is also the primary method for creating apps for the upcoming <a href="https://fuchsia.dev">Fuchsia</a> new open-source operating system by Google.</p>
+<h3 id="how-does-flutter-differ-from-other-frameworks">How does Flutter differ from other frameworks?</h3>
+<p>Flutter takes a different approach to other frameworks; it works more like a gaming engine and uses the Skia graphics engine to draw directly to the canvas.</p>
+<p>Skia graphics library also serves as the graphics engine for Chrome OS, Android, Mozilla Firefox and Firefox OS.</p>
+<p><strong>What does that mean?</strong></p>
+<p>That means that Flutter widgets are drawn directly to the canvas, so Flutter does not need to use web views nor other OEM widgets. Flutter also comes packed with <a href="https://flutter.dev/docs/development/ui/widgets">widgets</a> for Android (Material Design) and iOS (Cupertino).</p>
+<p>Flutter also aims to provide platform-specific behaviours such as animations, scrolling, transitions and more to give a more realistic native feel.</p>
+<p>Dart is the language of choice by Flutter, which may come as a surprise to many Android developers, mainly because of Google support of Kotlin.</p>
+<p>It was only two years ago at I/O 2017 that Google announced Kotlin as the first-class language for writing Android apps.</p>
+<p>Now we may ask! Why did Flutter choose to use Dart?</p>
+<p>One of the main features of Flutter is stateful hot reload, and that is only possible because Dart runtimes and compilers support the combination of AOT (Ahead Of Time) and JIT (Just In Time).</p>
+<p>Dart VM JIT enables Flutter to support stateful hot reload for fast development cycles, which means code can be interpreted at runtime.</p>
+<p>Dart AOT compiles to native ARM or X64 instructions set code; when you are ready to ship your product, Flutter will use AOT to compile to the specific platform.</p>
+<p>Flutter supports 60 frames per second (fps) or 120 fps on devices capable of 120Hz updates, and that is mostly due to Dart capability of handling object allocation and garbage collection without locks.</p>
+<p>Dart's garbage collection and allocation scheme are fast and a perfect fit for allocating many short-lived objects, which is ideal for every frame.</p>
+<p>Most programming languages support multiple concurrent execution threads (Java, Kotlin, Objective-C, and Swift). However, they use preemptive to switch between threads, if the preemption occurs when a resource is shared between threads (like memory) being updated, then this causes a race condition and the traditional way of solving a racing condition is by using locks, therefore preventing other threads from executing.</p>
+<p>Threads (know as Isolates) in Dart is non-preemptive executed in single isolate and does not share memory, which avoids the need for most locks.</p>
+<p>Thanks to Dart, Flutter does not need a specific declarative layout language like JSX or XML. Just as <a href="https://developer.apple.com/xcode/swiftui/">SwiftUI</a> (iOS) and <a href="https://developer.android.com/jetpack/compose">Jetpack Compose</a> (Android), developers can easily create interfaces programmatically.</p>
+<p>Another reason why Flutter chooses Dart was the ability to work closely with the community and the flexibility of the Dart team supporting Flutter right from the start; Dart improved in many ways over time with Flutter's feedback.</p>
+<p>Flutter is also based on the &lsquo;unidirectional data flow&rsquo; pattern or reactive programming, meaning, when a variable/property is changed (the state), the UI is re-rendered to reflect the new state.</p>
+<h3 id="benefits-of-adopting-flutter">Benefits of adopting Flutter</h3>
+<p>Flutter is extensible with third-party plugins that can implement new UI components giving you the ability to create custom UI easily or by wrapping platform-specific features such as audio/video, bluetooth, camera, augmented reality, etc.</p>
+<p>Flutter makes it easy to write platform-specific code using Platform.isAndroid or Platform.isIOS and wrapping platform-specific functionalities to your app or a plugin.</p>
+<p>Because Flutter drives the UI rendering (drawing), you don't have to worry about backward compatibility libraries like you do on Android and iOS natively.</p>
+<p>Flutter runs on Android 4.1.x or newer and iOS 8 or later and supports mobile hardware (iPhone 4S or newer) and ARM Android devices.</p>
+<p>With the hot reload feature, development can be much faster because we no longer have to wait for long builds on either Android or iOS, it only takes seconds.</p>
+<p>Not Flutter-specific, but having a single code base can be beneficial in many aspects.</p>
+<p>No code duplication over different platforms, testing needs to be done only once, and the QA process can be much faster.</p>
+<p>Apps can be launched with feature parity from the start, therefore avoiding the risk of one being left behind due to one performing better in revenues, downloads etc.</p>
+<h3 id="drawbacks">Drawbacks</h3>
+<p>Flutter App size can be larger than native.</p>
+<p>Flutter may not be the technology of choice for apps such as Games and that requires a lot of device-specific functionalities.</p>
+<p>Development may take longer if plugins or functionalities are not yet available.</p>
+<p>If Native UI changes, your app may look outdated if Flutter does not keep up to date with Material design or Cupertino; however, developers can replicate the widget or functionality themselves or if one is available from third-party.</p>
+<h3 id="greenfield-vs-brownfield">Greenfield vs Brownfield</h3>
+<p>New Apps (Greenfield)</p>
+<p>Flutter can work wonders if you are building something from the ground up as it's tooling works flawlessly.</p>
+<p>Existing Apps (brownfield)</p>
+<p>There are some pitfalls as Flutter is still young and in constant development.</p>
+<p>Flutter does not support multi-module import.
+Flutter does not support stateful hot reload when working within an existing app, for instance, where communication happens through channels.
+On Android Studio when the cache is cleared and invalidated sometimes you'll have to add build types to match your existing configuration manually; otherwise, you'll get compilation errors.</p>
+<p><strong>Things to consider when adopting a new technology</strong></p>
+<ul>
+<li>Programming language</li>
+<li>Technical architecture</li>
+<li>UI Components</li>
+<li>Productivity</li>
+<li>Community</li>
+<li>Tooling</li>
+<li>Testing</li>
+<li>CI/CD</li>
+</ul>
+<h3 id="programming-language">Programming Language</h3>
+<p><a href="https://dart.dev/samples">Dart</a> is a fast object-oriented programming language optimized for UI supporting multiple platforms. Dart is relatively new and easy to learn, especially if you are familiar with <a href="https://en.wikipedia.org/wiki/List_of_C-family_programming_languages">C-style programming language</a>.</p>
+<h3 id="technical-architecture">Technical Architecture</h3>
+<p>On Android, the majority of developers use Clean Architecture, MVP (model-view-presenter), MVVM (model-view-view-model) or MVI (model-view-intent).</p>
+<p>On iOS, developers use MVC (model-view-controller), MVVM or Viper.</p>
+<p>For these platforms, there are clear and well known architectural patterns that have proven to work, however since Flutter is a new framework it feels like the community is still defining the standard or best architecture to use.</p>
+<p>Flutter provides a lot of flexibility on how you can structure and architect your app, having said that, it can lead to large classes and missing architecture.</p>
+<p>I found <a href="https://fluttersamples.com/">Flutter samples</a> particularly useful for helping you decide on the architecture and therefore making your app more clean, scalable and maintainable.</p>
+<h3 id="ui-components">UI Components</h3>
+<p>Supporting both Android and iOS native look and feel is very important, and Flutter did a great job there in mimicking the look and feel on both platforms.</p>
+<p>Also, since everything in Flutter is a <a href="https://flutter.dev/docs/development/ui/widgets">widget</a>, you can easily extend and modify whatever you feel necessary.</p>
+<p>There are also other third-party solutions coming to play, one that is gaining momentum is <a href="https://www.2dimensions.com/">2Dimentons</a>. An online tool that allows you to create animations through their editor and use it within your flutter projects. You can also view and use other peoples artwork.</p>
+<h3 id="productivity">Productivity</h3>
+<p>One of the main benefits of cross-platform solutions is productivity; how can you reduce cost and speed up production?</p>
+<p>For one, having a single programming language for either Android, iOS, Web or Desktop, you can pretty much have a pool of developers that can work on either platform, hiring becomes much more manageable.</p>
+<p>Productivity not only has to do with technology but also with the tooling and community around it.</p>
+<p>Flutters hot-reload feature and the combination of tooling and third-party plugins (Firebase, Redux, RxDart, internationalization, databases, routing, etc.) makes Flutter an ideal candidate for fast prototyping.</p>
+<p>Having said that, the most challenging thing when learning a new technology is getting acquainted with the libraries, frameworks, tools, patterns and best practices.</p>
+<h3 id="community">Community</h3>
+<p>Although Dart didn't have much success in gaining popularity, however, since the announcement of Flutter at the Google I/O 2017, the community has been multiplying, and meetups and conferences are taking place online.</p>
+<p>As of this writing, Flutter's Github repository has 76,282 stars compared to 81,449 of Reactive Native.</p>
+<h3 id="tooling">Tooling</h3>
+<p>IDE's (Plugins) - IntelliJ, Android Studio and Visual Studio Code.
+Text Editors (Plugins) - Emacs, Vim and Atom.</p>
+<h3 id="testing">Testing</h3>
+<p>Unit Tests:</p>
+<p><a href="https://pub.dev/packages/test">test</a> - Provides core framework for writing unit tests.</p>
+<p>Widget Tests:</p>
+<p><a href="https://api.flutter.dev/flutter/flutter_test/flutter_test-library.html">flutter_test</a> - Provides additional utilities for widget testing.</p>
+<p>Integration Tests:</p>
+<p><a href="https://api.flutter.dev/flutter/flutter_driver/flutter_driver-library.html">flutter_driver</a>: This is Flutter's version of Selenium WebDriver (generic web), Protractor (Angular), Espresso (Android) or Earl Gray (iOS).</p>
+<p><strong>CI/CD</strong></p>
+<p><a href="https://flutter.dev/docs/deployment/cd#fastlane">Fastlane with Flutter</a>
+<a href="https://medium.com/flutter/test-flutter-apps-on-travis-3fd5142ecd8c">Travis</a>
+<a href="https://cirrus-ci.org/examples/#flutter">Cirus</a>
+<a href="https://docs.gitlab.com/ee/ci/README.html#doc-nav">Gitlab</a> - <code>.gitlab-ci.yml</code> <a href="https://raw.githubusercontent.com/brianegan/flutter_redux/master/.gitlab-ci.yml">sample file</a>
+<a href="https://bitrise.io">Bitrise</a>
+<a href="https://codemagic.io">Codemagic</a></p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Flutter pros outweigh the cons, and I think it is a fantastic tool for creating fast prototypes.</p>
+<p>Startups or smaller teams can benefit from Flutters rapid development cycle and tooling to produce fast builds for both Android and iOS and reach a wider audience in no time.</p>
+<p>I would not consider using Flutter with an existing project as the tooling around that is not great at the moment; however, if you are creating a project from scratch, I think there's a lot of benefits there.</p>
+<p>Since Flutter is a Google product aimed at supporting both Android and iOS, my main concern would be the long term feasibility of Apple vs Google and the likes of Apple restricting Flutter on their platform.</p>
+<p>With that in mind, I do not believe Apple would do such a thing unless Google breaks its policies. Afterall other cross-platforms solutions do the same thing.</p>
+<p>Another concern I have is that Google has a reputation for killing their products without caring about the community.</p>
+<p>With the upcoming of Google's operating system Fuchsia, aimed at running on any hardware, especially embedded systems with the help of their new micro-kernel called Zircon; Fuchsia will support Android apps and can already run on the following devices Acer Switch 12, Intel NUC, and Google Pixelbook.</p>
+<p>Fuchsia's user interface and apps are written with Flutter; with that in mind, I don't think Flutter will go away anytime soon.</p>
+<p>Will Android be replaced with Fuchsia? I don't think so, we all know that Android is Google's bread and butter at the moment, bear in mind that Chrome OS and Fuchsia supports Android apps.</p>
+
+        </div>
+        <aside>
+            <div class="col hide-on-small-only m3 l2">
+                <div class="section table-of-contents pushpin right">
+                    <h4>Contents</h4>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#apache-cordova-phonegap">Apache Cordova (PhoneGap)</a></li>
+    <li><a href="#xamarin-mono">Xamarin (Mono)</a></li>
+    <li><a href="#react-native">React Native</a></li>
+    <li><a href="#what-do-these-technologies-have-in-common">What do these technologies have in common?</a></li>
+    <li><a href="#how-does-flutter-differ-from-other-frameworks">How does Flutter differ from other frameworks?</a></li>
+    <li><a href="#benefits-of-adopting-flutter">Benefits of adopting Flutter</a></li>
+    <li><a href="#drawbacks">Drawbacks</a></li>
+    <li><a href="#greenfield-vs-brownfield">Greenfield vs Brownfield</a></li>
+    <li><a href="#programming-language">Programming Language</a></li>
+    <li><a href="#technical-architecture">Technical Architecture</a></li>
+    <li><a href="#ui-components">UI Components</a></li>
+    <li><a href="#productivity">Productivity</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#tooling">Tooling</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+        </aside>
+        
+    </div>
+
+<ul class="tags">
+    <li><i class="fal fa-hashtag"></i></li>
+    
+    <li>
+        <a href="http://queiroz.org/tags/flutter/">flutter</a>
+    </li>
+    <li>
+        <a href="http://queiroz.org/tags/dart/">dart</a>
+    </li></ul>
+</article>
+
+
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36px"
+                    height="36px">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="http://queiroz.org/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tableOfContents = document.querySelector(".table-of-contents")
+        if (tableOfContents != null) {
+            
+            let pageMetadata = document.querySelector('.page-metadata');
+            let pushpin = document.querySelectorAll('.pushpin');
+            let pushpinMarginTop = pageMetadata.offsetTop + pageMetadata.offsetHeight + 20
+            let pushpinInstance = M.Pushpin.init(pushpin, {
+                top: pushpinMarginTop
+            });
+            
+            let headers = document.getElementsByTagName("h3")
+            for (var i = 0; i < headers.length; ++i) {
+                headers[i].setAttribute("class", "section scrollspy")
+            }
+            let elems = document.querySelectorAll('.scrollspy')
+            let scrollspyInstance = M.ScrollSpy.init(elems, {
+                scrollOffset: 80
+            })
+        }
+    });
+</script>
+
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>
