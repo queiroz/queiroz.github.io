@@ -147,7 +147,7 @@ touch settings/prod.py
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python manage.py runserver --settings<span class="o">=</span>settings.dev
 </code></pre></div><p>and for production:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">python manage.py runserver --settings<span class="o">=</span>settings.prod
-</code></pre></div><p>##3.	What sensitive information should be separate from the main settings?</p>
+</code></pre></div><h3 id="what-sensitive-information-should-be-separate-from-the-main-settings">What sensitive information should be separate from the main settings?</h3>
 <p>Now we have reached an important question, because the Internet is a hostile place, we don't want to expose sensitive information and we wan't to keep this information as hidden as possible from prying eyes.</p>
 <p>This applies to database, email, secret key and anything with authentication related information.</p>
 <p>Again there are a lot of article there suggesting you create a separate file for sensitive information and read it from settings.</p>
@@ -223,6 +223,7 @@ touch settings/prod.py
   <ul>
     <li><a href="#where-should-the-settings-be-stored">Where should the settings be stored?</a></li>
     <li><a href="#how-can-i-properly-implement-the-settings-to-accommodate-both-environments">How can I properly implement the settings to accommodate both environments?</a></li>
+    <li><a href="#what-sensitive-information-should-be-separate-from-the-main-settings">What sensitive information should be separate from the main settings?</a></li>
   </ul>
 </nav>
                 </div>
