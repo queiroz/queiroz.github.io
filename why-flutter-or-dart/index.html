@@ -7,7 +7,7 @@
 
 
 <link rel="stylesheet" href="https://queiroz.org/css/materialize.min.css">
-<link rel="stylesheet" href="https://queiroz.org/sass/main.min.6e2bfd8b1fe2b4ea7aea890bba2a02a4d5e82a19555a47604ccd9604cc47ab0d.css">
+<link rel="stylesheet" href="https://queiroz.org/sass/main.min.97d469c69a989589ad7048ab545fc08fe80ce29143bafbb5690af4ece4f16394.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://queiroz.org/why-flutter-or-dart/">
 
@@ -226,6 +226,7 @@ Text Editors (Plugins) - Emacs, Vim and Atom.</p>
         </aside>
         
     </div>
+    <div class="row">
 
 <ul class="tags">
     <li><i class="fal fa-hashtag"></i></li>
@@ -236,6 +237,84 @@ Text Editors (Plugins) - Emacs, Vim and Atom.</p>
     <li>
         <a href="https://queiroz.org/tags/dart/">dart</a>
     </li></ul>
+</div>
+
+    <div class="row">
+        
+        <div class="col s12 m9 l10">
+            <section class="comments" github-issue-id="1"></section>
+        
+        </div>
+    </div><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let commentsEl = document.querySelector(".comments")
+        var id = commentsEl.getAttribute("github-issue-id")
+
+        let url = "https://github.com/queiroz/queiroz.github.io/issues/".concat(id)
+        let api_url = "https://api.github.com/repos/queiroz/queiroz.github.io/issues/".concat(id, "/comments")
+
+        let xhr = new XMLHttpRequest();
+        xhr.responseType = "json";
+        xhr.open("GET", api_url);
+        xhr.setRequestHeader("Accept", "application/vnd.github.v3.html+json");
+        xhr.send();
+
+        xhr.onload = function() {
+            if (xhr.status != 200) {
+                let errorEl = document.createElement("p")
+                errorEl.innerHTML = "<i>Comments for this post are not yet enabled in Github Issues</i>"
+                commentsEl.appendChild(errorEl)
+            } else {
+                let comments = xhr.response
+                let headerEl = document.createElement("h3")
+                headerEl.innerHTML = "Comments: ".concat(comments.length)
+                commentsEl.appendChild(headerEl)
+                displayComments(comments)
+                writeComment()
+            }
+        }
+
+        xhr.onerror = function() {
+            let errorEl = document.createElement("p")
+            errorEl.innerHTML = "<i>Something went wrong while loading comments :/ please refresh.</i>"
+            commentsEl.appendChild(errorEl)
+        }
+
+        let displayComments = function(comments) {
+            comments.forEach(function(comment) {
+                let commentEl = document.createElement("article")
+                commentEl.setAttribute("class", "comment")
+                commentEl.innerHTML = "".concat(
+                    "<img class='responsive-img' src='", comment.user.avatar_url, "' />",
+                    "<div class='header'>",
+                        "<span>",
+                            "<a class='username' href='", comment.user.html_url, "'>", comment.user.login, "</a>",
+                            " commented <em>", moment(comment.created_at).fromNow(), "</em>",
+                        "</span>",
+                    "</div>",
+                    "<div class='body'>",
+                        comment.body_html,
+                    "</div>"
+                )
+                commentsEl.appendChild(commentEl)
+                let leaveCommentEl = document.createElement("article")
+                leaveCommentEl.innerHTML = "".concat(
+                    "<div class='row'>",
+                        "<div class='center'><a href='", url, "' target='_blank'>Leave a comment</a></div>",
+                    "</div>"
+                )
+                commentsEl.appendChild(leaveCommentEl)
+            })
+        }
+
+        let writeComment = function() {
+            let writeCommentEl = document.createElement("article")
+            writeCommentEl.innerHTML = "".concat()
+        }
+    })
+</script>
+
 </article>
 
 
