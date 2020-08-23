@@ -147,7 +147,7 @@ firewall-cmd --reload
 Type <span class="s2">&#34;help&#34;</span> <span class="k">for</span> help.
 <span class="nv">postgres</span><span class="o">=</span>#
 </code></pre></div><p>Check the version to confirm:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">SELECT version<span class="o">(</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">SELECT version<span class="o">()</span><span class="p">;</span>
 </code></pre></div><p><strong>Output</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">                                                 version                                                 
 ---------------------------------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ Type <span class="s2">&#34;help&#34;</span> <span class="k">for</span> help.
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dropdb demodb
 </code></pre></div><p>Enter command to delete the user:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ dropuser demouser
-</code></pre></div><p>Since we've set password for the default user postgres we need to change some settings.</p>
+</code></pre></div><p>Since we&rsquo;ve set password for the default user postgres we need to change some settings.</p>
 <p>Configure PostgreSQL-MD5 Authentication. MD5 authentication requires the client to supply an MD5-encrypted password for authentication. To do that, edit <code>/var/lib/pgsql/9.5/data/pg_hba.conf</code> file:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vim /var/lib/pgsql/9.5/data/pg_hba.conf
 </code></pre></div><p>Add or Modify the lines as shown below:</p>

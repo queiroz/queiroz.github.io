@@ -135,13 +135,13 @@
 <tr>
 <td align="left">r = read</td>
 <td align="center">4</td>
-<td align="left">View what's in the file.</td>
+<td align="left">View what&rsquo;s in the file.</td>
 <td align="left">View list of files and sub-directories it contains</td>
 </tr>
 <tr>
 <td align="left">w = write</td>
 <td align="center">2</td>
-<td align="left">Change the file's  content, rename or delete.</td>
+<td align="left">Change the file&rsquo;s  content, rename or delete.</td>
 <td align="left">Add files or sub-directories, remove files or directories</td>
 </tr>
 <tr>
@@ -152,15 +152,15 @@
 </tr>
 </tbody>
 </table>
-<p>There are 2 ways to change file permissions in Linux, by (numbers) and (letters), let's cover them both.</p>
+<p>There are 2 ways to change file permissions in Linux, by (numbers) and (letters), let&rsquo;s cover them both.</p>
 <h3 id="changing-permissions-with-chmod-numbers">Changing Permissions with chmod (numbers)</h3>
-<p>If you currently own a file or directory then you can change it's permission and because we are using numbers to change permissions, the binary table above will help you understand how we came to this values.</p>
+<p>If you currently own a file or directory then you can change it&rsquo;s permission and because we are using numbers to change permissions, the binary table above will help you understand how we came to this values.</p>
 <p>As you can see above on the table, we have <code>r = 4, w = 2 and x = 1</code> and to stablish what permissions you want to give for a particular <code>owner, group or others</code>, all you have to do is sum them up.</p>
 <p>E.g.</p>
-<p>Let's give full permission to everyone <code>owner, group and others</code> which represents <code>rwxrwxrwx</code> as you've seen above.</p>
+<p>Let&rsquo;s give full permission to everyone <code>owner, group and others</code> which represents <code>rwxrwxrwx</code> as you&rsquo;ve seen above.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod <span class="m">777</span> file
 </code></pre></div><p>As you can see we have given <code>7</code> to each one <code>owner, group and others</code>, which is <code>r + w + x = 4 + 2 + 1</code> and all we did was sum the values.</p>
-<p>Now let's give <code>rwx</code> for the <code>owner</code> and <code>r-x</code> for <code>group and others</code></p>
+<p>Now let&rsquo;s give <code>rwx</code> for the <code>owner</code> and <code>r-x</code> for <code>group and others</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod <span class="m">755</span> file
 </code></pre></div><p>The above will result in <code>rwxr-xr-x</code></p>
 <p>You can also set no permissions at all, which will result in <code>---------</code></p>
@@ -176,26 +176,26 @@
 <p><code>a</code> for (all)</p>
 <p>As you can see it is slightly different, but a <code>user</code> can also be considered as the <code>owner</code> and the <code>a</code> is for all <code>user, group and others</code>.</p>
 <p>Consider that <code>file</code> will have all permissions given e.g. <code>rwxrwxrwx</code> similarly <code>777</code>.</p>
-<p>Now let's remove the <code>write</code> permissions from everyone <code>a</code>:</p>
+<p>Now let&rsquo;s remove the <code>write</code> permissions from everyone <code>a</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod a-w file
 </code></pre></div><p>The above will result in <code>r-xr-xr-x</code>.</p>
-<p>Now let's remove the <code>execute</code> permission from <code>others</code>:</p>
+<p>Now let&rsquo;s remove the <code>execute</code> permission from <code>others</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod o-x file
 </code></pre></div><p>The above will result in <code>rwxrwxrw-</code>.</p>
-<p>Now let's remove <code>rwx</code> from <code>group and others</code>:</p>
+<p>Now let&rsquo;s remove <code>rwx</code> from <code>group and others</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod go-rwx file
 </code></pre></div><p>The above will result in <code>rwx------</code>.</p>
 <p>Consider that <code>file</code> will have all permissions off e.g. <code>---------</code> similarly <code>000</code>.</p>
-<p>Now let's give the <code>user</code> <code>read and write</code> permissions:</p>
+<p>Now let&rsquo;s give the <code>user</code> <code>read and write</code> permissions:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod u+rw file
 </code></pre></div><p>The above will result in <code>rw-------</code>.</p>
-<p>Now let's give everyone <code>a</code> <code>execute</code> permissions:</p>
+<p>Now let&rsquo;s give everyone <code>a</code> <code>execute</code> permissions:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod a+x file
 </code></pre></div><p>The above will result in <code>--x--x--x</code>.</p>
-<p>Now let's give <code>user and group</code> <code>read and execute</code> permissions:</p>
+<p>Now let&rsquo;s give <code>user and group</code> <code>read and execute</code> permissions:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod ug+rx file
 </code></pre></div><p>The above will result in <code>r-xr-x---</code>.</p>
-<p>Now to the recusive part, let's add <code>write</code> permissions for <code>group</code> in the entire directory structure <code>webapp</code>:</p>
+<p>Now to the recusive part, let&rsquo;s add <code>write</code> permissions for <code>group</code> in the entire directory structure <code>webapp</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod -R g+w /home/webapp
 </code></pre></div><h3 id="default-permissions-on-creation">Default permissions on creation</h3>
 <p>Files and directories are created with a set of default permissions.</p>
@@ -205,9 +205,9 @@
 <li>Directory - usually 755</li>
 </ul>
 <h3 id="special-file-perms">Special File Perms</h3>
-<p>SUID (4) - Used on executables. Run with the privileges of the file's owner.</p>
+<p>SUID (4) - Used on executables. Run with the privileges of the file&rsquo;s owner.</p>
 <p>SGID (2) - Used on executables. It is the same idea as the SUID, but with group privileges. For directories it makes all files created in that directory have the directories group ownership.</p>
-<p>&ldquo;Sticky&rdquo; Bit (1) - When used on directories, only a file's owner can delete the file and not members of the same group or other users.</p>
+<p>&ldquo;Sticky&rdquo; Bit (1) - When used on directories, only a file&rsquo;s owner can delete the file and not members of the same group or other users.</p>
 
         </div>
         <aside>

@@ -3,15 +3,15 @@
     <head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
-<title>Django</title>
+<title>Android Studio</title>
 
 
 <link rel="stylesheet" href="https://queiroz.org/css/materialize.min.css">
 <link rel="stylesheet" href="https://queiroz.org/sass/main.min.b3b58c7f3759ad26ba47dcd72276272c9c5ba1aca6a246dd7857fbb08880a749.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
-<link rel="canonical" href="https://queiroz.org/tags/django/">
+<link rel="canonical" href="https://queiroz.org/tags/android-studio/">
 
-<link href="/tags/django/index.xml" rel="alternate" type="application/rss+xml" />
+<link href="/tags/android-studio/index.xml" rel="alternate" type="application/rss+xml" />
 
 <script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
     </head>
@@ -43,7 +43,7 @@
     </nav>
 </header><main><header class="page-metadata valign-wrapper">
     <div class="container">
-        <h1>Django</h1>
+        <h1>Android Studio</h1>
         <h2><span class="cursor">|</span></h2>
         
     </div>
@@ -51,36 +51,33 @@
     
     <article>
         <header>
-            <h1><a href="/django-settings-deployment/">Django Settings Deployment</a></h1>
+            <h1><a href="/debugging-gradle-script-in-intellij/android-studio/">Debugging Gradle Script in IntelliJ/Android Studio</a></h1>
             <div class="metadata">
                 <p>
                     <span>
                         
                         
                         
-                        <time pubdate="pubdate">Sep 01, 2016 ·</time>
+                        <time pubdate="pubdate">Aug 06 ·</time>
                         
                     </span>
                     <span>
-                        5 min read
+                        1 min read
                     </span>
                 </p>
 
 <ul class="tags">
     <li><i class="fal fa-hashtag"></i></li>
     
+    
     <li>
-        <a href="https://queiroz.org/tags/django/">django</a>
-    </li>
-    <li>
-        <a href="https://queiroz.org/tags/python/">python</a>
+        <a href="https://queiroz.org/tags/gradle/">gradle</a>
     </li></ul>
 </div>
         </header>
-        <p>After a long research I have finally found a good solution to deploy Django settings into several stages, which is production, development and common shared settings.
-I have also found a good way to deploy Django overall, which I&rsquo;ll be writing soon.
-Just to clarify, there is not standard way of deploying Django, however I think the method I put together is a very good way for deployment.
-Where should the settings be stored?</p>
+        <p>In order to debug Gradle we have to create a new remote configuration in Android Studio.
+ Open &ldquo;EditRun/Debug configurations&rdquo; dialog:  Don&rsquo;t forget to add your break point in the build.gradle file.
+Once in &ldquo;Run/Debug Configuration&rdquo; click on the + icon to add a new configuration and then select Remote:   You will be presented with the &ldquo;Remote&rdquo; configuration options. (Optional) rename configuration from &ldquo;Unnamed&rdquo; to whatever name you desire.</p>
     </article>
     
 </div>

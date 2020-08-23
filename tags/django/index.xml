@@ -18,7 +18,7 @@
       
       <guid>https://queiroz.org/django-settings-deployment/</guid>
       <description>After a long research I have finally found a good solution to deploy Django settings into several stages, which is production, development and common shared settings.
-I have also found a good way to deploy Django overall, which I&#39;ll be writing soon.
+I have also found a good way to deploy Django overall, which I&amp;rsquo;ll be writing soon.
 Just to clarify, there is not standard way of deploying Django, however I think the method I put together is a very good way for deployment.
 Where should the settings be stored?</description>
     </item>

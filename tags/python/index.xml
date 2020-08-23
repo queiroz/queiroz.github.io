@@ -18,7 +18,7 @@
       
       <guid>https://queiroz.org/django-settings-deployment/</guid>
       <description>After a long research I have finally found a good solution to deploy Django settings into several stages, which is production, development and common shared settings.
-I have also found a good way to deploy Django overall, which I&#39;ll be writing soon.
+I have also found a good way to deploy Django overall, which I&amp;rsquo;ll be writing soon.
 Just to clarify, there is not standard way of deploying Django, however I think the method I put together is a very good way for deployment.
 Where should the settings be stored?</description>
     </item>
@@ -29,9 +29,9 @@ Where should the settings be stored?</description>
       <pubDate>Wed, 21 Sep 2016 01:00:30 +0000</pubDate>
       
       <guid>https://queiroz.org/installing-python-from-source/</guid>
-      <description>Getting the Python release First we need to go to Python&#39;s source download link at https://www.python.org/downloads/source/ and choose our Python version, for this tutorial I have chosen Python 3.5.2 as it&#39;s the latest stable release as of this writing.
+      <description>Getting the Python release First we need to go to Python&amp;rsquo;s source download link at https://www.python.org/downloads/source/ and choose our Python version, for this tutorial I have chosen Python 3.5.2 as it&amp;rsquo;s the latest stable release as of this writing.
 wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz or directory specific:
-wget -P /tmp https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz The above command will download python 3.5.2 Gzipped source tarball to the current directory I&#39;m currently in /root, you can specify -P as specified above to save on that directory.</description>
+wget -P /tmp https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz The above command will download python 3.5.2 Gzipped source tarball to the current directory I&amp;rsquo;m currently in /root, you can specify -P as specified above to save on that directory.</description>
     </item>
     
   </channel>

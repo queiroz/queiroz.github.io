@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Quick tutorial on how to debug gradle/groovy scripts in IntelliJ/Android Studio">
+<title>Debugging Gradle Script in IntelliJ/Android Studio</title>
+
+
+<link rel="stylesheet" href="https://queiroz.org/css/materialize.min.css">
+<link rel="stylesheet" href="https://queiroz.org/sass/main.min.b3b58c7f3759ad26ba47dcd72276272c9c5ba1aca6a246dd7857fbb08880a749.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,900&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://queiroz.org/debugging-gradle-script-in-intellij/android-studio/">
+
+<script src="https://kit.fontawesome.com/af2557594b.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://queiroz.org/css/light.syntax.highlight.css">
+
+    </head>
+    <body><header >
+    <nav>
+        <div class="container">
+            <a href="https://queiroz.org/" class="brand-logo left">
+                <div class="header-logo left">
+                    queiroz<span>.org</span>
+                </div>
+            </a>
+            <ul class="right">
+                
+                
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/series/">Series</a>
+                    </li>
+                
+                    <li class="">
+                        <a href="/tags/">Tags</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </nav>
+</header><main>
+
+<header class="page-metadata valign-wrapper">
+    <div class="container">
+        <h1>Debugging Gradle Script in IntelliJ/Android Studio</h1>
+        <h2>Quick tutorial on how to debug gradle/groovy scripts in IntelliJ/Android Studio<span class="cursor">|</span></h2>
+        
+        <div class="info">
+            <p>
+                <span>
+                    
+                    
+                    
+                    <time pubdate="pubdate">Aug 06 ·</time>
+                    
+                </span>
+                <span>
+                   1 min read
+                </span>
+            </p>
+        </div>
+        
+    </div>
+</header>
+
+
+<article class="page container">
+    <div class="row">
+        
+        <div class="col s12 m12 l12">
+            <p>In order to debug Gradle we have to create a new remote configuration in Android Studio.</p>
+<ol>
+<li>Open &ldquo;EditRun/Debug configurations&rdquo; dialog:</li>
+</ol>
+<p><img src="/articles/1_edit_configurations_dialog.png" alt="Edit Configurations Dialog"></p>
+<p>Don&rsquo;t forget to add your break point in the <code>build.gradle</code> file.</p>
+<p><img src="/articles/2_build_gradle_break_point.png" alt="Add Gradle Break Point"></p>
+<ol start="2">
+<li>Once in &ldquo;Run/Debug Configuration&rdquo; click on the <code>+</code> icon to add a new configuration and then select <code>Remote</code>:</li>
+</ol>
+<p><img src="/articles/3_add_remote_configuration.png" alt="Add Remote Configuration"></p>
+<ul>
+<li>You will be presented with the &ldquo;<strong>Remote</strong>&rdquo; configuration options.</li>
+<li>(<strong>Optional</strong>) rename configuration from &ldquo;<strong>Unnamed</strong>&rdquo; to whatever name you desire.</li>
+<li>Then click &ldquo;<strong>OK</strong>&rdquo;</li>
+</ul>
+<p><img src="/articles/4_rename_remote_configuration.png" alt="Rename Remote Configuration"></p>
+<p>As you can see on the image above I&rsquo;ve chosen &ldquo;Gradle Remote Debug&rdquo;.</p>
+<ol start="3">
+<li>Now select your &ldquo;<strong>Remote</strong>&rdquo; configuration in the &ldquo;<strong>EditRun/Debug configurations</strong>&rdquo; dialog and go to &ldquo;<strong>Terminal</strong>&rdquo; in Android Studio and type the following command:</li>
+</ol>
+<p><code>./gradlew help -Dorg.gradle.debug=true --no-daemon</code></p>
+<p>The above command option can be anything &ldquo;help, tasks, etc.&rdquo; the only important attribute is <code>-Dorg.gradle.debug=true --no-daemon</code> and having the &ldquo;<strong>Remote</strong>&rdquo; configuration setup.</p>
+<p>After inputing the above command hit &ldquo;Enter&rdquo; and you&rsquo;ll see the command will start the Daemon and will be listening for the remote debugger as illustrated on the following picture.</p>
+<p><img src="/articles/5_start_daemon.png" alt="Start Daemon"></p>
+<ol start="4">
+<li>Now all that is left to do is to attach the debugger by clicking on the &ldquo;<strong>Debug</strong>&rdquo; icon in Android Studio.</li>
+</ol>
+<p><img src="/articles/6_debug_icon.png" alt="Debug Icon"></p>
+<p>Then if you haven&rsquo;t forgotten to set your break point you&rsquo;ll see that Gradle will be executed and will stop at the break point.</p>
+<p><img src="/articles/7_run_to_break_point.png" alt="Run To Break Point"></p>
+
+        </div>
+        
+    </div>
+    <div class="row">
+
+<ul class="tags">
+    <li><i class="fal fa-hashtag"></i></li>
+    
+    
+    <li>
+        <a href="https://queiroz.org/tags/gradle/">gradle</a>
+    </li></ul>
+</div>
+
+
+</article>
+
+
+
+        </main><footer class="clear-fix">
+    <div class="container">
+        <ul class="info">
+            <li>
+                <img class="circle responsive-img" src="/images/rodrigo.webp" alt="Author Photo" width="36"
+                    height="36">
+            </li>
+            <li>
+                <p class="name">Rodrigo Queiroz</p>
+                <p class="role">Software Engineer</p>
+            </li>
+            <li>
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/queiroz" target="_blank"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://stackoverflow.com/users/974184/rodrigo-queiroz" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/que1roz" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/que1roz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</footer></body>
+    
+    <script src="https://queiroz.org/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let tableOfContents = document.querySelector(".table-of-contents")
+        if (tableOfContents != null) {
+            
+            let pageMetadata = document.querySelector('.page-metadata');
+            let pushpin = document.querySelectorAll('.pushpin');
+            let pushpinMarginTop = pageMetadata.offsetTop + pageMetadata.offsetHeight + 20
+            let pushpinInstance = M.Pushpin.init(pushpin, {
+                top: pushpinMarginTop
+            });
+            
+            let headers = document.getElementsByTagName("h3")
+            for (var i = 0; i < headers.length; ++i) {
+                headers[i].setAttribute("class", "section scrollspy")
+            }
+            let elems = document.querySelectorAll('.scrollspy')
+            let scrollspyInstance = M.ScrollSpy.init(elems, {
+                scrollOffset: 80
+            })
+        }
+    });
+</script>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-12180586-6', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <script>
+        document.write(
+            '<script src="http://' +
+            (location.host || '${1:localhost}').split(':')[0] +
+            ':${2:35729}/livereload.js?snipver=1"></' +
+            'script>'
+        );
+    </script>
+</html>
