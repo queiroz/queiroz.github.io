@@ -3,31 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://queiroz.org/tags/android-studio/</loc>
-    <lastmod>2020-08-23T06:45:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://queiroz.org/debugging-gradle-script-in-intellij/android-studio/</loc>
-    <lastmod>2020-08-23T06:45:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://queiroz.org/tags/gradle/</loc>
-    <lastmod>2020-08-23T06:45:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://queiroz.org/posts/</loc>
-    <lastmod>2020-08-23T06:45:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://queiroz.org/tags/</loc>
-    <lastmod>2020-08-23T06:45:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://queiroz.org/series/</loc>
     <lastmod>2020-02-03T21:01:12+00:00</lastmod>
   </url>
@@ -44,6 +19,16 @@
   
   <url>
     <loc>https://queiroz.org/tags/flutter/</loc>
+    <lastmod>2019-11-14T21:01:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://queiroz.org/posts/</loc>
+    <lastmod>2019-11-14T21:01:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://queiroz.org/tags/</loc>
     <lastmod>2019-11-14T21:01:12+00:00</lastmod>
   </url>
   

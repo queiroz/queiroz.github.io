@@ -6,21 +6,10 @@
     <description>Recent content in Posts on Learning New Technologies. Sharing knowledge.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 23 Aug 2020 06:45:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Nov 2019 21:01:12 +0000</lastBuildDate>
     
 	<atom:link href="https://queiroz.org/posts/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Debugging Gradle Script in IntelliJ/Android Studio</title>
-      <link>https://queiroz.org/debugging-gradle-script-in-intellij/android-studio/</link>
-      <pubDate>Sun, 23 Aug 2020 06:45:00 +0000</pubDate>
-      
-      <guid>https://queiroz.org/debugging-gradle-script-in-intellij/android-studio/</guid>
-      <description>In order to debug Gradle we have to create a new remote configuration in Android Studio.
- Open &amp;ldquo;EditRun/Debug configurations&amp;rdquo; dialog:  Don&amp;rsquo;t forget to add your break point in the build.gradle file.
-Once in &amp;ldquo;Run/Debug Configuration&amp;rdquo; click on the + icon to add a new configuration and then select Remote:   You will be presented with the &amp;ldquo;Remote&amp;rdquo; configuration options. (Optional) rename configuration from &amp;ldquo;Unnamed&amp;rdquo; to whatever name you desire.</description>
-    </item>
     
     <item>
       <title>Why Flutter or Dart?</title>
