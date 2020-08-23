@@ -76,19 +76,19 @@
 <ol>
 <li>Open &ldquo;EditRun/Debug configurations&rdquo; dialog:</li>
 </ol>
-<p><img src="/articles/1_edit_configurations_dialog.png" alt="Edit Configurations Dialog"></p>
+<p><img src="/images/articles/1_edit_configurations_dialog.jpg" alt="Edit Configurations Dialog"></p>
 <p>Don&rsquo;t forget to add your break point in the <code>build.gradle</code> file.</p>
-<p><img src="/articles/2_build_gradle_break_point.png" alt="Add Gradle Break Point"></p>
+<p><img src="/images/articles/2_build_gradle_break_point.jpg" alt="Add Gradle Break Point"></p>
 <ol start="2">
 <li>Once in &ldquo;Run/Debug Configuration&rdquo; click on the <code>+</code> icon to add a new configuration and then select <code>Remote</code>:</li>
 </ol>
-<p><img src="/articles/3_add_remote_configuration.png" alt="Add Remote Configuration"></p>
+<p><img src="/images/articles/3_add_remote_configuration.jpg" alt="Add Remote Configuration"></p>
 <ul>
 <li>You will be presented with the &ldquo;<strong>Remote</strong>&rdquo; configuration options.</li>
 <li>(<strong>Optional</strong>) rename configuration from &ldquo;<strong>Unnamed</strong>&rdquo; to whatever name you desire.</li>
 <li>Then click &ldquo;<strong>OK</strong>&rdquo;</li>
 </ul>
-<p><img src="/articles/4_rename_remote_configuration.png" alt="Rename Remote Configuration"></p>
+<p><img src="/images/articles/4_rename_remote_configuration.jpg" alt="Rename Remote Configuration"></p>
 <p>As you can see on the image above I&rsquo;ve chosen &ldquo;Gradle Remote Debug&rdquo;.</p>
 <ol start="3">
 <li>Now select your &ldquo;<strong>Remote</strong>&rdquo; configuration in the &ldquo;<strong>EditRun/Debug configurations</strong>&rdquo; dialog and go to &ldquo;<strong>Terminal</strong>&rdquo; in Android Studio and type the following command:</li>
@@ -96,11 +96,11 @@
 <p><code>./gradlew help -Dorg.gradle.debug=true --no-daemon</code></p>
 <p>The above command option can be anything &ldquo;help, tasks, etc.&rdquo; the only important attribute is <code>-Dorg.gradle.debug=true --no-daemon</code> and having the &ldquo;<strong>Remote</strong>&rdquo; configuration setup.</p>
 <p>After inputing the above command hit &ldquo;Enter&rdquo; and you&rsquo;ll see the command will start the Daemon and will be listening for the remote debugger as illustrated on the following picture.</p>
-<p><img src="/articles/5_start_daemon.png" alt="Start Daemon"></p>
+<p><img src="/images/articles/5_start_daemon.jpg" alt="Start Daemon"></p>
 <ol start="4">
 <li>Now all that is left to do is to attach the debugger by clicking on the &ldquo;<strong>Debug</strong>&rdquo; icon in Android Studio.</li>
 </ol>
-<p><img src="/articles/6_debug_icon.png" alt="Debug Icon"></p>
+<p><img src="/images/articles/6_debug_icon.jpg" alt="Debug Icon"></p>
 <p>Then if you haven&rsquo;t forgotten to set your break point you&rsquo;ll see that Gradle will be executed and will stop at the break point.</p>
 <p><img src="/articles/7_run_to_break_point.png" alt="Run To Break Point"></p>
 
